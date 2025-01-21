@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Guessing Game</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .letter-btn {
+            width: 40px;
+            height: 40px;
+            margin: 3px;
+            font-weight: bold;
+        }
+        .word-display {
+            letter-spacing: 8px;
+            font-size: 2rem;
+            font-family: monospace;
+        }
+        .game-container {
+            max-width: 800px;
+            margin: auto;
+        }
+        .score-board {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body class="bg-light">
+    <div class="container game-container py-5">
+        <div class="text-center mb-4">
+            <h1 class="mb-4">Guess the Word</h1>
+            <div class="mb-4">
+                <img src="/api/placeholder/300/200" alt="Word hint" class="img-fluid rounded shadow">
+            </div>
+            <div class="score-board mb-4">
+                <div class="row">
+                    <div class="col">
+                        <h4>Current Score: <span id="score">0</span></h4>
+                    </div>
+                    <div class="col">
+                        <h4>Total Score: <span id="totalScore">0</span></h4>
+                    </div>
+                    <div class="col">
+                        <h4>Words Left: <span id="wordsLeft">20</span></h4>
+                    </div>
+                </div>
+            </div>
+            <div class="word-display mb-4" id="wordDisplay"></div>
+        </div>
+
+        <div class="keyboard text-center">
+            <div class="row justify-content-center mb-2">
+                <div class="col-auto">
+                    <div id="row1"></div>
+                </div>
+            </div>
+            <div class="row justify-content-center mb-2">
+                <div class="col-auto">
+                    <div id="row2"></div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-auto">
+                    <div id="row3"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const words = [
+            { word: 'ELEPHANT', image: '/api/placeholder/300/200' },
+            { word: 'GIRAFFE', image: '/api/placeholder/300/200' },
+            { word: 'PENGUIN', image: '/api/placeholder/300/200' },
+            { word: 'DOLPHIN', image: '/api/placeholder/300/200' },
+            { word: 'KANGAROO', image: '/api/placeholder/300/200' },
+            { word: 'OCTOPUS', image: '/api/placeholder/300/200' },
+            { word: 'BUTTERFLY', image: '/api/placeholder/300/200' },
+            { word: 'CROCODILE', image: '/api/placeholder/300/200' },
+            { word: 'FLAMINGO', image: '/api/placeholder/300/200' },
+            { word: 'HEDGEHOG', image: '/api/placeholder/300/200' },
+            { word: 'JAGUAR', image: '/api/placeholder/300/200' },
+            { word: 'KOALA', image: '/api/placeholder/300/200' },
+            { word: 'LEOPARD', image: '/api/placeholder/300/200' },
+            { word: 'MONKEY', image: '/api/placeholder/300/200' },
+            { word: 'OSTRICH', image: '/api/placeholder/300/200' },
+            { word: 'PANDA', image: '/api/placeholder/300/200' },
+            { word: 'RACCOON', image: '/api/placeholder/300/200' },
+            { word: 'SQUIRREL', image: '/api/placeholder/300/200' },
+            { word: 'TIGER', image: '/api/placeholder/300/200' },
+            { word: 'ZEBRA', image: '/api/placeholder/300/200' }
+        ];
+        
+        let currentWord = '';
+        let guessedLetters = new Set();
+        let score = 0;
+        let totalScore = 0;
+        let remainingWords = [...words];
+        
+        // Keyboard layout
+        const keyboard = [
+            'QWERTYUIOP'.split(''),
+            'ASDFGHJKL'.split(''),
+            'ZXCVBNM'.split('')
+        ];
+
+        function initializeGame() {
+            if (remainingWords.length === 0) {
+                alert(`Game Over! Your final total score is ${totalScore}!`);
+                remainingWords = [...words]; // Reset the word list
+                totalScore = 0;
+            }
+
+            // Select random word
+            const randomIndex = Math.floor(Math.random() * remainingWords.length);
+            currentWord = remainingWords[randomIndex].word;
+            remainingWords.splice(randomIndex, 1); // Remove used word
+            
+            guessedLetters.clear();
+            score = 0;
+            updateScore();
+            updateWordDisplay();
+            createKeyboard();
+            updateWordsLeft();
+        }
+
+        function createKeyboard() {
+            keyboard.forEach((row, rowIndex) => {
+                const rowElement = document.getElementById(`row${rowIndex + 1}`);
+                rowElement.innerHTML = '';
+                
+                row.forEach(letter => {
+                    const button = document.createElement('button');
+                    button.textContent = letter;
+                    button.className = 'btn btn-primary letter-btn';
+                    button.addEventListener('click', () => handleLetterClick(letter, button));
+                    rowElement.appendChild(button);
+                });
+            });
+        }
+
+        function handleLetterClick(letter, button) {
+            if (guessedLetters.has(letter)) return;
+            
+            button.disabled = true;
+            guessedLetters.add(letter);
+            
+            if (currentWord.includes(letter)) {
+                score++;
+                totalScore++;
+                button.classList.remove('btn-primary');
+                button.classList.add('btn-success');
+            } else {
+                score--;
+                totalScore--;
+                button.classList.remove('btn-primary');
+                button.classList.add('btn-danger');
+            }
+            
+            updateScore();
+            updateWordDisplay();
+            checkWinCondition();
+        }
+
+        function updateScore() {
+            document.getElementById('score').textContent = score;
+            document.getElementById('totalScore').textContent = totalScore;
+        }
+
+        function updateWordsLeft() {
+            document.getElementById('wordsLeft').textContent = remainingWords.length;
+        }
+
+        function updateWordDisplay() {
+            const display = currentWord
+                .split('')
+                .map(letter => guessedLetters.has(letter) ? letter : '_')
+                .join(' ');
+            document.getElementById('wordDisplay').textContent = display;
+        }
+
+        function checkWinCondition() {
+            const hasWon = currentWord
+                .split('')
+                .every(letter => guessedLetters.has(letter));
+            
+            if (hasWon) {
+                setTimeout(() => {
+                    alert(`Congratulations! You found the word "${currentWord}"!\nCurrent Score: ${score}\nTotal Score: ${totalScore}`);
+                    initializeGame();
+                }, 500);
+            }
+        }
+
+        // Start the game
+        initializeGame();
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
