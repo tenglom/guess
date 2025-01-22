@@ -33,6 +33,7 @@
     <div class="container game-container py-5">
         <div class="text-center mb-4">
             <h1 class="mb-4">Guess the Word</h1>
+            <h2 class="mb-4">Escalators Parts</h2>
             <div class="mb-4">
                 <img src="/api/placeholder/300/200" alt="Word hint" class="img-fluid rounded shadow">
             </div>
@@ -73,26 +74,13 @@
 
     <script>
         const words = [
-            { word: 'ELEPHANT', image: '/api/placeholder/300/200' },
-            { word: 'GIRAFFE', image: '/api/placeholder/300/200' },
-            { word: 'PENGUIN', image: '/api/placeholder/300/200' },
-            { word: 'DOLPHIN', image: '/api/placeholder/300/200' },
-            { word: 'KANGAROO', image: '/api/placeholder/300/200' },
-            { word: 'OCTOPUS', image: '/api/placeholder/300/200' },
-            { word: 'BUTTERFLY', image: '/api/placeholder/300/200' },
-            { word: 'CROCODILE', image: '/api/placeholder/300/200' },
-            { word: 'FLAMINGO', image: '/api/placeholder/300/200' },
-            { word: 'HEDGEHOG', image: '/api/placeholder/300/200' },
-            { word: 'JAGUAR', image: '/api/placeholder/300/200' },
-            { word: 'KOALA', image: '/api/placeholder/300/200' },
-            { word: 'LEOPARD', image: '/api/placeholder/300/200' },
-            { word: 'MONKEY', image: '/api/placeholder/300/200' },
-            { word: 'OSTRICH', image: '/api/placeholder/300/200' },
-            { word: 'PANDA', image: '/api/placeholder/300/200' },
-            { word: 'RACCOON', image: '/api/placeholder/300/200' },
-            { word: 'SQUIRREL', image: '/api/placeholder/300/200' },
-            { word: 'TIGER', image: '/api/placeholder/300/200' },
-            { word: 'ZEBRA', image: '/api/placeholder/300/200' }
+            { word: 'HANDRAIL', image: '/escalator/handrail.webp' },
+            { word: 'ELEVATOR', image: '/escalator/elevator.jpeg' },
+            { word: 'SKIRT BRUSHES', image: '/escalator/skirt brushes.webp' },
+            { word: 'ESCALATOR', image: '/escalator/escalator.jpeg' },
+            { word: 'STEP CHAIN', image: '/escalator/step chain.jpg' },
+            { word: 'MOVING WALKWAY', image: '/escalator/moving walkway.jpg' },
+            { word: 'STEP ROLLERS', image: '/escalator/step rollers.jpg' }
         ];
         
         let currentWord = '';
@@ -103,9 +91,9 @@
         
         // Keyboard layout
         const keyboard = [
-            'QWERTYUIOP'.split(''),
-            'ASDFGHJKL'.split(''),
-            'ZXCVBNM'.split('')
+            'AZERTYUIOP'.split(''),
+            'QSDFGHJKLM'.split(''),
+            'WXCVBN'.split('')
         ];
 
         function initializeGame() {
