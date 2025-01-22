@@ -107,6 +107,7 @@
             const randomIndex = Math.floor(Math.random() * remainingWords.length);
             currentWord = remainingWords[randomIndex].word;
             image = remainingWords[randomIndex].image;
+            console.log(image);
             remainingWords.splice(randomIndex, 1); // Remove used word
             
             guessedLetters.clear();
@@ -174,6 +175,7 @@
         }
 
         function updateWordImage(image) {
+            console.log("Updating "+image);
             document.getElementById('image').src = image;    
         }
         
