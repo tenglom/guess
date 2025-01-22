@@ -74,13 +74,13 @@
 
     <script>
         const words = [
-            { word: 'HANDRAIL', image: '/escalator/handrail.webp' },
-            { word: 'ELEVATOR', image: '/escalator/elevator.jpeg' },
-            { word: 'SKIRT BRUSHES', image: '/escalator/skirt brushes.webp' },
-            { word: 'ESCALATOR', image: '/escalator/escalator.jpeg' },
-            { word: 'STEP CHAIN', image: '/escalator/step chain.jpg' },
-            { word: 'MOVING WALKWAY', image: '/escalator/moving walkway.jpg' },
-            { word: 'STEP ROLLERS', image: '/escalator/step rollers.jpg' }
+            { word: 'HANDRAIL', image: 'escalator/handrail.webp' },
+            { word: 'ELEVATOR', image: 'escalator/elevator.jpeg' },
+            { word: 'SKIRT BRUSHES', image: 'escalator/skirt brushes.webp' },
+            { word: 'ESCALATOR', image: 'escalator/escalator.jpeg' },
+            { word: 'STEP CHAIN', image: 'escalator/step chain.jpg' },
+            { word: 'MOVING WALKWAY', image: 'escalator/moving walkway.jpg' },
+            { word: 'STEP ROLLERS', image: 'escalator/step rollers.jpg' }
         ];
         
         let currentWord = '';
@@ -168,7 +168,7 @@
 
         function updateWordDisplay() {
             const display = currentWord
-                .split('')
+                .split(' ')
                 .map(letter => guessedLetters.has(letter) ? letter : '_')
                 .join(' ');
             document.getElementById('wordDisplay').textContent = display;
@@ -181,7 +181,7 @@
         
         function checkWinCondition() {
             const hasWon = currentWord
-                .split('')
+                .split(' ')
                 .every(letter => guessedLetters.has(letter));
             
             if (hasWon) {
