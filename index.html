@@ -27,6 +27,11 @@
             padding: 15px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
+
+        img {
+            width: 400px;
+            height: 400px;
+        }
     </style>
 </head>
 <body class="bg-light">
@@ -76,11 +81,11 @@
         const words = [
             { word: 'HANDRAIL', image: '/guess/escalator/handrail.webp' },
             { word: 'ELEVATOR', image: '/guess/escalator/elevator.jpeg' },
-            { word: 'SKIRTBRUSHES', image: '/guess/escalator/skirt brushes.webp' },
+            { word: 'SKIRT BRUSHES', image: '/guess/escalator/skirt brushes.webp' },
             { word: 'ESCALATOR', image: '/guess/escalator/escalator.jpeg' },
             { word: 'STEPCHAIN', image: '/guess/escalator/step chain.jpg' },
-            { word: 'MOVINGWALKWAY', image: '/guess/escalator/moving walkway.jpg' },
-            { word: 'STEPROLLERS', image: '/guess/escalator/step rollers.jpg' }
+            { word: 'MOVING WALKWAY', image: '/guess/escalator/moving walkway.jpg' },
+            { word: 'STEP ROLLERS', image: '/guess/escalator/step rollers.jpg' }
         ];
         
         let currentWord = '';
@@ -93,7 +98,7 @@
         const keyboard = [
             'AZERTYUIOP'.split(''),
             'QSDFGHJKLM'.split(''),
-            'WXCVBN'.split('')
+            'WXCVBN '.split('')
         ];
 
         function initializeGame() {
