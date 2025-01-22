@@ -93,7 +93,7 @@
         const keyboard = [
             'AZERTYUIOP'.split(''),
             'QSDFGHJKLM'.split(''),
-            'WXCVBN'.split('')
+            'WXCVBN '.split('')
         ];
 
         function initializeGame() {
@@ -168,7 +168,7 @@
 
         function updateWordDisplay() {
             const display = currentWord
-                .split(' ')
+                .split('')
                 .map(letter => guessedLetters.has(letter) ? letter : '_')
                 .join(' ');
             document.getElementById('wordDisplay').textContent = display;
@@ -181,7 +181,7 @@
         
         function checkWinCondition() {
             const hasWon = currentWord
-                .split(' ')
+                .split('')
                 .every(letter => guessedLetters.has(letter));
             
             if (hasWon) {
