@@ -38,7 +38,7 @@
     <div class="container game-container py-5">
         <div class="text-center mb-4">
             <h1 class="mb-4">Guess the Word</h1>
-            <h2 class="mb-4">Escalators Parts</h2>
+            <h2 class="mb-4">Electrical Enginnering</h2>
             <div class="mb-4">
                 <img id="image" src="" alt="Word hint" class="img-fluid rounded shadow">
             </div>
@@ -79,13 +79,13 @@
 
     <script>
         const words = [
-            { word: 'HANDRAIL', image: '/guess/escalator/handrail.webp' },
-            { word: 'ELEVATOR', image: '/guess/escalator/elevator.jpeg' },
-            { word: 'SKIRT BRUSHES', image: '/guess/escalator/skirt brushes.webp' },
-            { word: 'ESCALATOR', image: '/guess/escalator/escalator.jpeg' },
-            { word: 'STEPCHAIN', image: '/guess/escalator/step chain.jpg' },
-            { word: 'MOVING WALKWAY', image: '/guess/escalator/moving walkway.jpg' },
-            { word: 'STEP ROLLERS', image: '/guess/escalator/step rollers.jpg' }
+            { word: 'CURRENT', image: '/guess/electricity/handrail.webp' },
+            { word: 'OVERLOAD', image: '/guess/electricity/elevator.jpeg' },
+            { word: 'SHORT CIRCUIT', image: '/guess/electricity/skirt brushes.webp' },
+            { word: 'IMPEDANCE', image: '/guess/electricity/escalator.jpeg' },
+            { word: 'STEPCHAIN', image: '/guess/electricity/step chain.jpg' },
+            { word: 'MOVING WALKWAY', image: '/guess/electricity/moving walkway.jpg' },
+            { word: 'STEP ROLLERS', image: '/guess/electricity/step rollers.jpg' }
         ];
         
         let currentWord = '';
@@ -98,7 +98,7 @@
         const keyboard = [
             'AZERTYUIOP'.split(''),
             'QSDFGHJKLM'.split(''),
-            'WXCVBN '.split('')
+            'WXCVBN'.split('')
         ];
 
         function initializeGame() {
